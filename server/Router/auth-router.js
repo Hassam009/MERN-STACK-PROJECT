@@ -1,14 +1,23 @@
 // auth-router.js
 
+// router.get("/", (req, res) => {
+//     res.status(200).send("I am from Server using router");
+// });
+
+
+// router.route("/UserRegister").get((req,res)=>{
+//     res.status(200).send("I am from Register Page through router route");
+// })
+
+
+
 const express = require("express");
-const router = express.Router();  // Correct usage of Router
+const router = express.Router();
+// const { home, register } = require("../controller/auth-controller");
+// Another Method is 
+const autherController=require("../controller/auth-controller")
 
-router.get("/", (req, res) => {
-    res.status(200).send("I am from Server using router");
-});
-
-router.route("/UserRegister").get((req,res)=>{
-    res.status(200).send("I am from Register Page through router route");
-})
+router.route("/").get(autherController.home);
+router.route("/register").get(autherController.register);
 
 module.exports = router;
