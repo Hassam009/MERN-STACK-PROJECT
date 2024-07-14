@@ -18,6 +18,6 @@ const router = express.Router();
 const autherController=require("../controller/auth-controller")
 
 router.route("/").get(autherController.home);
-router.route("/register").get(autherController.register);
+router.route("/register").post(autherController.register);
 
 module.exports = router;

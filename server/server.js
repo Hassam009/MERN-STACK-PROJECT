@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+app.use(express.json());
+
 const authRouter = require("./Router/auth-router.js");  // Adjust path as necessary
 
 app.use("/api/auth", authRouter);  // Mounting the router at /api/auth
