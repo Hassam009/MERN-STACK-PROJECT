@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
+const router=require("./router/auth-router")
+const connectDb=require("./Utils/db")
 
 app.use(express.json());
 
@@ -16,6 +19,9 @@ app.get("/Register", (req, res) => {
 });
 
 const PORT = 5000;
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+connectDb().then(()=>{
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
 });
+    
