@@ -24,6 +24,10 @@ const userSchema=new mongoose.Schema({
     }
 })
 
+//METHOD TO SECURE PASSWORD 
+userSchema.pre("save", async function(){
+console.log("pre method", this)
+})
 
 //Define the Collection ot model name
 
