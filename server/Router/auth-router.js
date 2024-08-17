@@ -19,5 +19,6 @@ const autherController=require("../controller/auth-controller")
 
 router.route("/").get(autherController.home);
 router.route("/register").post(autherController.register);
+router.route("/login").post(autherController.login);
 
 module.exports = router;

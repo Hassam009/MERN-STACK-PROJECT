@@ -32,4 +32,32 @@ const register = async (req, res) => {
     }
 };
 
-module.exports = { home, register };
+
+//CODE FOR LOGIN FUNCTIONALITY
+
+const Login=async (req,res)=>{
+try{
+const {email, password}=req.body;
+const userExist= await User.findOne({email});
+console.log(userExist)
+if(!userExist){
+    return res.status(400).json({message:'Invalid Credentials'});    
+}
+
+const user= await bcrypt.comapre(password, userExist.password)
+if(user){
+    res.status(201).json({ 
+        msg: "Login Successfull", 
+        token: await userExist.generateToken(),
+        userId:userExist._id.toString(),
+    });
+}
+else{
+    res.status(401).json({message:"Invalid Credentials"})
+}
+}catch(error){
+    res.status(500).json({ msg: "Internal Server Error" });
+}
+}
+
+module.exports = { home, register, Login };
