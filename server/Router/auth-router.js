@@ -16,9 +16,10 @@ const router = express.Router();
 // const { home, register } = require("../controller/auth-controller");
 // Another Method is 
 const autherController=require("../controller/auth-controller")
-
+const validate=require('../middleware/validate-middleware')
 router.route("/").get(autherController.home);
-router.route("/register").post(autherController.register);
+router.route("/register").
+post(validate(signupScheme),  autherController.register);
 router.route("/login").post(autherController.login);
 
 module.exports = router;
